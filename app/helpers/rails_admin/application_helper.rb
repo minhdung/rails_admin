@@ -60,7 +60,7 @@ module RailsAdmin
         li_stack = navigation nodes_stack, nodes
 
         label = navigation_label || t('admin.misc.navigation')
-        %{<li class='nav-header'>#{label}</li>#{li_stack}} if li_stack.present?
+        %{<li class='dropdown'>#{label}</li>#{li_stack}} if li_stack.present?
       end.join.html_safe
     end
 
@@ -70,22 +70,11 @@ module RailsAdmin
       end.join
 
       label = RailsAdmin::Config.navigation_static_label || t('admin.misc.navigation_static_label')
-      li_stack = %{<li class='nav-header'>#{label}</li>#{li_stack}}.html_safe if li_stack.present?
+      li_stack = %{<li class='dropdown'>#{label}</li>#{li_stack}}.html_safe if li_stack.present?
       li_stack
     end
 
     def navigation nodes_stack, nodes, level=0
-      nodes.map do |node|
-        model_param = node.abstract_model.to_param
-        url         = url_for(:action => :index, :controller => 'rails_admin/main', :model_name => model_param)
-        level_class = " nav-level-#{level}" if level > 0
-        nav_icon = node.navigation_icon ? %{<i class="#{node.navigation_icon}"></i>}.html_safe : ''
-
-        li = content_tag :li, "data-model"=>model_param do
-          link_to nav_icon + node.label_plural, url, :class => "pjax#{level_class}"
-        end
-        li + navigation(nodes_stack, nodes_stack.select{ |n| n.parent.to_s == node.abstract_model.model_name}, level+1)
-      end.join.html_safe
     end
 
     def breadcrumb action = @action, acc = []
