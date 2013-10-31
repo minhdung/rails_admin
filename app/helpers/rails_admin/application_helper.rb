@@ -93,8 +93,13 @@ module RailsAdmin
           li2 = content_tag :li do
             link_to 'Review', rails_admin.review_path('article')
           end
+        else
+          li2 = nil
         end
         li + navigation(nodes_stack, nodes_stack.select{ |n| n.parent.to_s == node.abstract_model.model_name}, level+1)
+        if li2 != nil
+          li2 + navigation(nodes_stack, nodes_stack.select{ |n| n.parent.to_s == node.abstract_model.model_name}, level+1)
+        end
       end.join.html_safe
     end
 
