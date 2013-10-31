@@ -68,7 +68,7 @@ module RailsAdmin
                 '+ review + '
               </li>' }
             </ul>
-        </li><pre>#{debug nodes_stack}</pre>} if li_stack.present?
+        </li><pre>#{debug nodes}</pre>} if li_stack.present?
       end.join.html_safe
     end
 
