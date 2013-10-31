@@ -99,6 +99,8 @@ module RailsAdmin
 
         if li2 != nil
           li + li2 + navigation(nodes_stack, nodes_stack.select{ |n| n.parent.to_s == node.abstract_model.model_name}, level+1)
+        else
+          li + navigation(nodes_stack, nodes_stack.select{ |n| n.parent.to_s == node.abstract_model.model_name}, level+1)
         end
       end.join.html_safe
     end
