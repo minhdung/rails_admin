@@ -60,7 +60,7 @@ module RailsAdmin
         li_stack = navigation nodes_stack, nodes
 
         label = navigation_label || t('admin.misc.navigation')
-        %{<li class='dropdown'>#{label}</li>#{li_stack}} if li_stack.present?
+        %{<li class='dropdown'>#{label}</li><ul class="dropdown-menu">#{li_stack}</ul>} if li_stack.present?
       end.join.html_safe
     end
 
@@ -75,23 +75,16 @@ module RailsAdmin
     end
 
     def navigation nodes_stack, nodes, level=0
-      ul1 = ['<ul>']
-      ul1.map do |tag|
-        ul = content_tag :ul, class: "dropdown-menu"
+      nodes.map do |node|
+        model_param = node.abstract_model.to_param
+        url         = url_for(:action => :index, :controller => 'rails_admin/main', :model_name => model_param)
+        level_class = " nav-level-#{level}" if level > 0
+        nav_icon = node.navigation_icon ? %{<i class="#{node.navigation_icon}"></i>}.html_safe : ''
 
-
-        nodes.map do |node|
-          model_param = node.abstract_model.to_param
-          url         = url_for(:action => :index, :controller => 'rails_admin/main', :model_name => model_param)
-          level_class = " nav-level-#{level}" if level > 0
-          nav_icon = node.navigation_icon ? %{<i class="#{node.navigation_icon}"></i>}.html_safe : ''
-
-          li = content_tag :li, "data-model"=>model_param do
-            link_to nav_icon + node.label_plural, url, :class => "pjax#{level_class}"
-          end
-          li + navigation(nodes_stack, nodes_stack.select{ |n| n.parent.to_s == node.abstract_model.model_name}, level+1)
-        end.join.html_safe
-
+        li = content_tag :li, "data-model"=>model_param do
+          link_to nav_icon + node.label_plural, url, :class => "pjax#{level_class}"
+        end
+        li + navigation(nodes_stack, nodes_stack.select{ |n| n.parent.to_s == node.abstract_model.model_name}, level+1)
       end.join.html_safe
     end
 
