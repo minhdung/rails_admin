@@ -63,7 +63,7 @@ module RailsAdmin
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">#{label} <b class="caret"></b></a>
             <ul class="dropdown-menu">
               #{li_stack}
-              <li>
+              <li class='#{"active" if params[:action] == "review"}'>
                 #{link_to 'review', rails_admin.review_path('article')}
               </li>
             </ul>
