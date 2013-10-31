@@ -63,8 +63,8 @@ module RailsAdmin
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">#{label} <b class="caret"></b></a>
             <ul class="dropdown-menu">
               #{li_stack}
-              <li data-model="article">
-                <a class="pjax" href="./article/review">Review</a>
+              <li>
+                #{link_to 'review', rails_admin.index_path('article')}
               </li>
             </ul>
         </li>} if li_stack.present?
