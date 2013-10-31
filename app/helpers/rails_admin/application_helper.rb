@@ -54,7 +54,7 @@ module RailsAdmin
       nodes_stack = RailsAdmin::Config.visible_models(:controller => self.controller)
       node_model_names = nodes_stack.map{ |c| c.abstract_model.model_name }
 
-      binding.pry
+      binding
       nodes_stack.group_by(&:navigation_label).map do |navigation_label, nodes|
         nodes = nodes.select{ |n| n.parent.nil? || !n.parent.to_s.in?(node_model_names) }
         li_stack = navigation nodes_stack, nodes
