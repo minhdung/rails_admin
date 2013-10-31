@@ -60,7 +60,7 @@ module RailsAdmin
         li_stack = navigation nodes_stack, nodes
 
         label = navigation_label || t('admin.misc.navigation')
-        %{<li class='dropdown'><a href="#" class="dropdown-toggle" data-toggle="dropdown">#{label}</a><ul class="dropdown-menu">#{li_stack}</ul></li>} if li_stack.present?
+        %{<li class='dropdown'><a href="#" class="dropdown-toggle" data-toggle="dropdown">#{label} <b class="caret"></b></a><ul class="dropdown-menu">#{li_stack}</ul></li>} if li_stack.present?
       end.join.html_safe
     end
 
