@@ -19,7 +19,16 @@
             %small= _get_plugin_name[1] || 'Admin'
 
           .nav-collapse.collapse
-            %ul.nav.nav-list= main_navigation
+            %ul.nav.nav-list
+              = main_navigation
+              %li.dropdown{style:"padding: 0 15px;"}
+                %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                  Data
+                  %b.caret
+                  %ul.dropdown-menu
+                    %li
+                      = link_to "Read data", rails_admin.review_path('article')
+
           .nav-collapse.collapse
             %ul.nav.nav-list= static_navigation
 

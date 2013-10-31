@@ -65,17 +65,7 @@ module RailsAdmin
             <ul class="dropdown-menu">
               #{li_stack}
             </ul>
-        </li>
-        <li class='dropdown' style="padding: 0 15px;">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li>
-                #{ link_to "Read data", rails_admin.review_path('article')}
-              </li>
-            </ul>
-        </li>
-
-        } if li_stack.present?
+        </li>} if li_stack.present?
       end.join.html_safe
     end
 
