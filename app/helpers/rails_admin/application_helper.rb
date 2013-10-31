@@ -54,7 +54,6 @@ module RailsAdmin
       nodes_stack = RailsAdmin::Config.visible_models(:controller => self.controller)
       node_model_names = nodes_stack.map{ |c| c.abstract_model.model_name }
 
-      binding
       nodes_stack.group_by(&:navigation_label).map do |navigation_label, nodes|
         nodes = nodes.select{ |n| n.parent.nil? || !n.parent.to_s.in?(node_model_names) }
         li_stack = navigation nodes_stack, nodes
@@ -62,7 +61,10 @@ module RailsAdmin
         label = navigation_label || t('admin.misc.navigation')
         %{<li class='dropdown' style="padding: 0 15px;">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">#{label} <b class="caret"></b></a>
-            <ul class="dropdown-menu">#{li_stack}</ul>
+            <ul class="dropdown-menu">
+              #{li_stack}
+              #{link_to rails_admin.review_path('article') if params[:controller] == 'article'}
+            </ul>
         </li>} if li_stack.present?
       end.join.html_safe
     end
