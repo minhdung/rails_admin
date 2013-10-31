@@ -57,17 +57,18 @@ module RailsAdmin
       nodes_stack.group_by(&:navigation_label).map do |navigation_label, nodes|
         nodes = nodes.select{ |n| n.parent.nil? || !n.parent.to_s.in?(node_model_names) }
         li_stack = navigation nodes_stack, nodes
-
+        review = link_to 'Review', rails_admin.review_path('article')
         label = navigation_label || t('admin.misc.navigation')
         %{<li class='dropdown' style="padding: 0 15px;">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">#{label} <b class="caret"></b></a>
             <ul class="dropdown-menu">
               #{li_stack}
-              <li class='#{"active" if params[:action] == "review"}'>
-                #{link_to 'review', rails_admin.review_path('article')}
-              </li>
+              #{
+              '<li>
+                '+ review + '
+              </li>' }
             </ul>
-        </li>} if li_stack.present?
+        </li><pre>#{debug nodes_stack}</pre>} if li_stack.present?
       end.join.html_safe
     end
 
