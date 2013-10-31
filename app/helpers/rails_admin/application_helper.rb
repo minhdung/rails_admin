@@ -64,7 +64,7 @@ module RailsAdmin
             <ul class="dropdown-menu">
               #{li_stack}
               <li data-model="article">
-                <a class="pjax" href="./admin/article/review">Review</a>
+                <a class="pjax" href="./article/review">Review</a>
               </li>
             </ul>
         </li>} if li_stack.present?
