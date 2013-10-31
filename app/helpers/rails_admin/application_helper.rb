@@ -64,7 +64,7 @@ module RailsAdmin
             <ul class="dropdown-menu">
               #{li_stack}
               <li>
-                #{link_to 'review', rails_admin.index_path('article')}
+                #{link_to 'review', rails_admin.review_path('article')}
               </li>
             </ul>
         </li>} if li_stack.present?
