@@ -75,6 +75,7 @@ module RailsAdmin
     end
 
     def navigation nodes_stack, nodes, level=0
+      '<ul class="dropdown-menu">'.html_safe
       nodes.map do |node|
         model_param = node.abstract_model.to_param
         url         = url_for(:action => :index, :controller => 'rails_admin/main', :model_name => model_param)
@@ -86,6 +87,7 @@ module RailsAdmin
         end
         li + navigation(nodes_stack, nodes_stack.select{ |n| n.parent.to_s == node.abstract_model.model_name}, level+1)
       end.join.html_safe
+      '</ul>'.html_safe
     end
 
     def breadcrumb action = @action, acc = []
