@@ -34,6 +34,24 @@
         %a{onclick: "setFontFamily('Helvetica-Bold')"} Helvetica-Bold
     .clear
 
-
-= rails_admin_form_for @object, :url => new_path(:model_name => @abstract_model.to_param), :as => @abstract_model.param_key, :html => { :multipart => true, :class => "form-horizontal denser", :data => { :title => @page_name } } do |form|
-  = form.generate :action => :create
+%div{style: "float: left"}
+  = rails_admin_form_for @object, :url => new_path(:model_name => @abstract_model.to_param), :as => @abstract_model.param_key, :html => { :multipart => true, :class => "form-horizontal denser", :data => { :title => @page_name } } do |form|
+    = form.generate :action => :create
+%div{style:"float:left"}
+  .alert.alert-info{style: "margin-left:20px;"}
+    クリックで選べるよ
+    %br/
+    :javascript
+      function setType(name)
+      {
+        $("*[name='source[type]']").val(name);
+      }
+    %ul
+      %li
+        %a{onclick: "setType('testabc')"} testabc
+      %li
+        %a{onclick: "setType('test11')"} test11
+      %li
+        %a{onclick: "setType('test')"} test
+      %li
+        %a{onclick: "setType('1111111')"} 1111111
