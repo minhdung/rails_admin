@@ -17,7 +17,7 @@
       %ul
         - Source.all.select('source_type').uniq.each do |type|
           %li
-            %a{onclick: "setType('#{type}')"}= type
+            %a{onclick: "setType('#{type.source_type}')"}= type.source_type
 
     .alert.alert-info{style: "margin-left:20px;"} 例） http://ameblo.jp/tanaka--miho/
 
