@@ -15,14 +15,9 @@
           $("*[name='source[source_type]']").val(name);
         }
       %ul
-        %li
-          %a{onclick: "setType('testabc')"} testabc
-        %li
-          %a{onclick: "setType('test11')"} test11
-        %li
-          %a{onclick: "setType('test')"} test
-        %li
-          %a{onclick: "setType('1111111')"} 1111111
+        - Source.all.select('source_type').uniq.each do |type|
+          %li
+            %a{onclick: "setType('#{type}')"}= type
 
     .alert.alert-info{style: "margin-left:20px;"} 例） http://ameblo.jp/tanaka--miho/
 
