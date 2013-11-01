@@ -1,3 +1,39 @@
-= debug params
+- if params[:model_name] == "category"
+  %h3 ショートカット
+  .list
+    %h3 type
+    :javascript
+      function setType(name)
+      {
+        $("*[name='category[category_type]']").val(name);
+      }
+    %ul
+      %li
+        %a{onclick: "setType('fashion_magazine')"} fashion_magazine
+      %li
+        %a{onclick: "setType('gadget_magazine')"} gadget_magazine
+    .clear
+    %h3 organization
+    :javascript
+      function setOrganization(name)
+      {
+        $("*[name='category[organization]']").val(name);
+      }
+    %ul
+      %li
+        %a{onclick: "setOrganization('インデックス・コミュニケーションズ')"} インデックス・コミュニケーションズ
+    .clear
+    %h3 font family
+    :javascript
+      function setFontFamily(name)
+      {
+        $("*[name='category[font_family]']").val(name);
+      }
+    %ul
+      %li
+        %a{onclick: "setFontFamily('Helvetica-Bold')"} Helvetica-Bold
+    .clear
+
+
 = rails_admin_form_for @object, :url => new_path(:model_name => @abstract_model.to_param), :as => @abstract_model.param_key, :html => { :multipart => true, :class => "form-horizontal denser", :data => { :title => @page_name } } do |form|
   = form.generate :action => :create
