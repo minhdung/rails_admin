@@ -34,20 +34,21 @@
 %h4{style:"margin: 10px 30px"}
   = User.length
 %h3 日次増加ユーザー数
-  - array = []
-  - User.all.each do |user|
-    - array.push(user.created_at.strftime("%Y-%m-%d"))
-  %table.table
-    %thead
+
+- array = []
+- User.all.each do |user|
+  - array.push(user.created_at.strftime("%Y-%m-%d"))
+%table.table
+  %thead
+    %tr
+      %th Date
+      %th Num of new user
+  %tbody
+    - array.uniq.each do |date|
       %tr
-        %th Date
-        %th Num of new user
-    %tbody
-      - array.uniq.each do |date|
-        %tr
-          %td= date
-          %td
-            = User.where("created_at like '%#{date}%' ").length
+        %td= date
+        %td
+          = User.where("created_at like '%#{date}%' ").length
 
 
 - if @auditing_adapter && authorized?(:history)
