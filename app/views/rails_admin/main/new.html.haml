@@ -1,7 +1,7 @@
 - if params[:model_name] == "category"
   %h3 ショートカット
   .list
-    %h3 type
+    %h6 type
     :javascript
       function setType(name)
       {
@@ -13,7 +13,7 @@
       %li
         %a{onclick: "setType('gadget_magazine')"} gadget_magazine
     .clear
-    %h3 organization
+    %h6 organization
     :javascript
       function setOrganization(name)
       {
@@ -23,7 +23,7 @@
       %li
         %a{onclick: "setOrganization('インデックス・コミュニケーションズ')"} インデックス・コミュニケーションズ
     .clear
-    %h3 font family
+    %h6 font family
     :javascript
       function setFontFamily(name)
       {
