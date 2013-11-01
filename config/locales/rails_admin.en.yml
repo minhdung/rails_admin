@@ -76,7 +76,7 @@ en:
         title: "New %{model_label}"
         menu: "Add new"
         breadcrumb: "New"
-        link: "Add a new %{model_label}"
+        link: "New %{model_label}"
         done: "created"
       edit:
         title: "Edit %{model_label} '%{object_label}'"
