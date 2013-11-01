@@ -76,13 +76,13 @@ en:
         title: "New %{model_label}"
         menu: "Add new"
         breadcrumb: "New"
-        link: "New %{model_label}"
+        link: "New"
         done: "created"
       edit:
         title: "Edit %{model_label} '%{object_label}'"
         menu: "Edit"
         breadcrumb: "Edit"
-        link: "Edit this %{model_label}"
+        link: "Edit"
         done: "updated"
       delete:
         title: "Delete %{model_label} '%{object_label}'"
