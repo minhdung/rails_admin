@@ -87,7 +87,7 @@ module RailsAdmin
         nav_icon = node.navigation_icon ? %{<i class="#{node.navigation_icon}"></i>}.html_safe : ''
 
         li = content_tag :li, "data-model"=>model_param do
-          link_to nav_icon + node.label_plural, url, :class => "pjax#{level_class}"
+          link_to nav_icon + node.label_plural, url, :class => "#{level_class}"
         end
         if model_param == "article"
           li2 = content_tag :li do
@@ -116,7 +116,7 @@ module RailsAdmin
           o = a.send(:eval, 'bindings[:object]')
           content_tag(:li, :class => current_action?(a, am, o) && "active") do
             crumb = if a.http_methods.include?(:get)
-              link_to url_for(:action => a.action_name, :controller => 'rails_admin/main', :model_name => am.try(:to_param), :id => (o.try(:persisted?) && o.try(:id) || nil)), :class => 'pjax' do
+              link_to url_for(:action => a.action_name, :controller => 'rails_admin/main', :model_name => am.try(:to_param), :id => (o.try(:persisted?) && o.try(:id) || nil)), :class => '' do
                 wording_for(:breadcrumb, a, am, o)
               end
             else
