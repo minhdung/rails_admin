@@ -57,7 +57,7 @@ module RailsAdmin
       nodes_stack.group_by(&:navigation_label).map do |navigation_label, nodes|
         nodes = nodes.select{ |n| n.parent.nil? || !n.parent.to_s.in?(node_model_names) }
         li_stack = navigation nodes_stack, nodes
-        review = link_to 'Review', rails_admin.review_path('article')
+        review = link_to 'レビュー待ち記事リスト', rails_admin.review_path('article')
 
         label = navigation_label || t('admin.misc.navigation')
         %{<li class='dropdown' style="padding: 0 15px;">
@@ -136,7 +136,7 @@ module RailsAdmin
         wording = wording_for(:menu, action)
         %{
           <li title="#{wording if only_icon}" rel="#{'tooltip' if only_icon}" class="icon #{action.key}_#{parent}_link #{'active' if current_action?(action)}">
-            <a class="#{action.pjax? ? 'pjax' : ''}" href="#{url_for({ :action => action.action_name, :controller => 'rails_admin/main', :model_name => abstract_model.try(:to_param), :id => (object.try(:persisted?) && object.try(:id) || nil) })}">
+            <a class="#{action.pjax? ? '' : ''}" href="#{url_for({ :action => action.action_name, :controller => 'rails_admin/main', :model_name => abstract_model.try(:to_param), :id => (object.try(:persisted?) && object.try(:id) || nil) })}">
               <i class="#{action.link_icon}"></i>
               <span#{only_icon ? " style='display:none'" : ""}>#{wording}</span>
             </a>
