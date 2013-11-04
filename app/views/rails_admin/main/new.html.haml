@@ -5,7 +5,7 @@
     :javascript
       function setType(name)
       {
-        $("*[name='category[category_type]']").val(name);
+        $("*[name='category[type]']").val(name);
       }
     %ul
       %li
@@ -47,12 +47,12 @@
       :javascript
         function setType(name)
         {
-          $("*[name='source[source_type]']").val(name);
+          $("*[name='source[type]']").val(name);
         }
       %ul
-        - Source.all.select('source_type').uniq.each do |type|
+        - Source.all.select('type').uniq.each do |type|
           %li
-            %a{onclick: "setType('#{type.source_type}')"}= type.source_type
+            %a{onclick: "setType('#{type.type}')"}= type.type
 
     .alert.alert-info{style: "margin-left:20px;"} 例） http://ameblo.jp/tanaka--miho/
 
