@@ -57,7 +57,7 @@ module RailsAdmin
       nodes_stack.group_by(&:navigation_label).map do |navigation_label, nodes|
         nodes = nodes.select{ |n| n.parent.nil? || !n.parent.to_s.in?(node_model_names) }
         li_stack = navigation nodes_stack, nodes
-        review = link_to 'レビュー待ち記事リスト', rails_admin.review_path('article')
+        review = link_to 'Review', rails_admin.review_path('article')
 
         label = navigation_label || t('admin.misc.navigation')
         %{<li class='dropdown' style="padding: 0 15px;">
@@ -87,11 +87,11 @@ module RailsAdmin
         nav_icon = node.navigation_icon ? %{<i class="#{node.navigation_icon}"></i>}.html_safe : ''
 
         li = content_tag :li, "data-model"=>model_param do
-          link_to nav_icon + node.label_plural, url, :class => "#{level_class}"
+          link_to nav_icon + node.label_plural, url, :class => "pjax#{level_class}"
         end
         if model_param == "article"
           li2 = content_tag :li do
-            link_to 'Review', rails_admin.review_path('article')
+            link_to 'レビュー待ち記事リスト', rails_admin.review_path('article')
           end
         else
           li2 = nil
@@ -116,7 +116,7 @@ module RailsAdmin
           o = a.send(:eval, 'bindings[:object]')
           content_tag(:li, :class => current_action?(a, am, o) && "active") do
             crumb = if a.http_methods.include?(:get)
-              link_to url_for(:action => a.action_name, :controller => 'rails_admin/main', :model_name => am.try(:to_param), :id => (o.try(:persisted?) && o.try(:id) || nil)), :class => '' do
+              link_to url_for(:action => a.action_name, :controller => 'rails_admin/main', :model_name => am.try(:to_param), :id => (o.try(:persisted?) && o.try(:id) || nil)), :class => 'pjax' do
                 wording_for(:breadcrumb, a, am, o)
               end
             else
@@ -136,7 +136,7 @@ module RailsAdmin
         wording = wording_for(:menu, action)
         %{
           <li title="#{wording if only_icon}" rel="#{'tooltip' if only_icon}" class="icon #{action.key}_#{parent}_link #{'active' if current_action?(action)}">
-            <a class="#{action.pjax? ? '' : ''}" href="#{url_for({ :action => action.action_name, :controller => 'rails_admin/main', :model_name => abstract_model.try(:to_param), :id => (object.try(:persisted?) && object.try(:id) || nil) })}">
+            <a class="#{action.pjax? ? 'pjax' : ''}" href="#{url_for({ :action => action.action_name, :controller => 'rails_admin/main', :model_name => abstract_model.try(:to_param), :id => (object.try(:persisted?) && object.try(:id) || nil) })}">
               <i class="#{action.link_icon}"></i>
               <span#{only_icon ? " style='display:none'" : ""}>#{wording}</span>
             </a>
