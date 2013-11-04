@@ -91,7 +91,7 @@ module RailsAdmin
         end
         if model_param == "article"
           li2 = content_tag :li do
-            link_to 'レビュー待ち記事リスト', rails_admin.review_path('article')
+            link_to 'Review', rails_admin.review_path('article')
           end
         else
           li2 = nil
